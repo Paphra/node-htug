@@ -1,0 +1,139 @@
+doctype html
+html
+  head
+    meta(http-equiv="x-ua-compatible" content="ie=edge")
+    
+    title= title
+
+    // Bootstrap 4.0.0
+    link(rel="stylesheet" href="/css/bootstrap.min.css")
+
+    link(rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css")
+      
+    // Font Awesome 
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css")
+    
+    // Material Design Bootstrap
+    //link(href="/css/mdb.min.css" rel="stylesheet")
+    
+    // custom
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+
+    block navigation
+      nav.navbar.navbar-dark.bg-primary.fixed-top
+        .container
+          a.navbar-brand(href="/")
+            i Health Torch Uganda          
+          
+          button.navbar-toggler(
+            data-target="#navbar-content" aria-controls="navbar-content"
+            data-toggle='collapse' aria-expanded=false aria-label="Toggle Navigation"
+            type="button")
+            span.navbar-toggler-icon
+          #navbar-content.collapse.navbar-collapse
+            form.form-inline(action="/search", method="get")
+              input.form-control.mr-sm-2(type="search" placeholder="Search ..." aria-label="Search")
+              button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
+            ul.navbar-nav.mr-auto.p-3
+              .row
+                .col-md-6
+                  li.nav-item(class=(navHome?'active':''))
+                    a.nav-link(href="/") Home
+                    i.text-muted All The Events that you need in one place
+                  .dropdown-divider
+                  li.nav-item
+                    a.nav-link(href="/posts") Posts and Stories
+                    i.text-muted All the interesting stories comming to you from evry corner of the world.
+                  li.nav-item
+                    a.nav-link(href="/questions") Questions | Ask or Browse
+                    i.text-muted View questions from other people, or ask your own question 
+                      | and get an answeer right away.
+                    p 
+                      b Note:
+                      p Questions must be Medical in Nature
+                .col-md-6
+                  li.nav-item
+                    a.nav-link(href="/about") About Us
+                    i.text-muted Our Events are massive every year/month/day and hour.
+                      | and you will miss alot if you don't atleast attend one of our evets.
+              .dropdown-divider
+              .row
+                .col-md-4
+                  .text-success.text-center
+                    i Administrative Operations
+                  hr
+                  li.nav-item
+                    a.nav-link(href="/admin") Administrator Dashboard
+                    i.text-muted Shows all the setting of an Administrator
+                .col-md-4
+                  .text-success.text-center 
+                    i Posts Operations
+                  hr
+                  li.nav-item
+                    a.nav-link(href="/admin/posts") View | Publish | Draft
+                    i.text-muted View all posts and perform different operations on them. 
+                      | Also, you can create or edit them new or existing posts
+                  li.nav-item
+                    a.nav-link(href="/admin/posts/comments") Post Comments
+                    i.text-muted View all post comments and perform different operations on them. 
+                      | Also, you can edit them and approve those that can appear
+                .col-md-4
+                  .text-success.text-center 
+                    i Questions Operations
+                  hr
+                  li.nav-item
+                    a.nav-link(href="/admin/questions") View | Publish | Draft
+                    i.text-muted View all Questions from the users and perform different operations on them. 
+                      | Also, you can edit and approve existing questions.
+                  li.nav-item
+                    a.nav-link(href="/admin/questions/comments") Question Comments
+                    i.text-muted View all question comments and perform different operations on them. 
+                      | Also, you can edit them and approve those that can appear
+              .dropdown-divider
+              .row
+                .col-md-12
+                  li.nav-item(class=navSub?'active':'')
+                    a.nav-link(href="/admin/subscribers") Subscribers
+                    i.text-muted Activate or deactivate subscribers and perform mailling operations for newsletters.
+
+    .container(style="padding: 70px 0")
+      block content
+
+
+  block footer
+
+    footer.footer.text-white.bg-dark.p-3.bottom
+      .container-fluid
+        .row
+          .col-md-3
+          .col-md-6
+            form(action="/subscribers", method='post')
+              .form-group
+                .text-center
+                  i Subscribe to Our Events
+                hr
+                .row
+                  .col-md-5
+                    input.form-control(type="text" name='fullName'
+                      placeholder="Full Name" required=true)
+                  .col-md-5
+                    input.form-control(type="email" name="email"
+                      placeholder="Email Address" required=true)
+                  .col-md-2
+                    button.btn.btn-primary.btn-sm.btn-block(
+                      role="button" type="submit") Subscribe  
+          .col-md-3
+
+  script(src="/js/jquery.min.js")
+  script(src="/js/popper.min.js")
+  script(src="/js/bootstrap.min.js")
+
+  script(src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js")
+  script(src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js")
+  script(src="https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/export/bootstrap-table-export.min.js")
+
+  
+  block scripts
+  

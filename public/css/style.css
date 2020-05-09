@@ -1,0 +1,22 @@
+body {
+  font: 13px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #dedede;
+}
+
+.nav-item.nav-link{
+  color: white;
+}
+
+.nav-item.active{
+  background-color: #dddd;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 2px 0;
+  float: center;
+}
+
+footer{
+  position: relative;
+  bottom: 0;
+
+}

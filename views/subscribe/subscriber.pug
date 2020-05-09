@@ -1,0 +1,43 @@
+extends ../adminLayout
+
+block adminContent
+
+	.card.shadow
+		h3.card-header= title
+		.card-body
+			if subscriber.data
+				.card.m-3
+					h5.card-header #{subscriber.data.fullName}
+					.card-body
+						p= subscriber.message
+						p #{subscriber.data.email}
+						if subscriber.data.active
+							p.text-success Active
+						else
+							p.text-danger Inactive
+						a.btn.btn-primary.btn-sm.float-right(
+							data-toggle='collapse', href="#update" data-target='#update') Update
+			
+			else
+				h4 #{subscriber.message}
+				if subscriber.errors
+					ul
+						each error in subscriber.errors
+							li= error.msg
+		.card-footer.p-4
+			form#update.collapse(action="", method="post")
+				.row.form-group
+					.col-md-6
+						input.form-control(type="text" value=(subscriber.data?subscriber.data.fullName:'') 
+							name='fullName' placeholder='Full Name')
+					.col-md-6
+						input.form-control(type="email" value=(subscriber.data?subscriber.data.email:'') 
+							name='email' placeholder="Email Address")
+				.row
+					.col-md-6
+						select.form-control(type="number" name='active')
+							option(value="0" selected=(subscriber.data?!subscriber.data.active:false)) Inactive
+							option(value="1" selected=(subscriber.data?subscriber.data.active:false)) Active
+					.col-md-6
+						button.btn.btn-success.btn-sm.btn-block(type="submit") Update Subscriber 
+							span.fas.fa-recycle
