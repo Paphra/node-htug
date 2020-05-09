@@ -22,7 +22,7 @@ html
   body
 
     block navigation
-      nav.navbar.navbar-dark.bg-primary.fixed-top
+      nav.navbar.navbar-light.bg-success.sticky-top
         .container
           a.navbar-brand(href="/")
             i Health Torch Uganda          
@@ -35,29 +35,30 @@ html
           #navbar-content.collapse.navbar-collapse
             form.form-inline(action="/search", method="get")
               input.form-control.mr-sm-2(type="search" placeholder="Search ..." aria-label="Search")
-              button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
+              button.btn.btn-outline-primaary.my-2.my-sm-0(type="submit") Search
             ul.navbar-nav.mr-auto.p-3
               .row
-                .col-md-6
+                .col-md-6.bg
                   li.nav-item(class=(navHome?'active':''))
-                    a.nav-link(href="/") Home
+                    a.nav-link.text-primary(href="/") Home
                     i.text-muted All The Events that you need in one place
                   .dropdown-divider
                   li.nav-item
                     a.nav-link(href="/posts") Posts and Stories
                     i.text-muted All the interesting stories comming to you from evry corner of the world.
+                  .dropdown-divider
                   li.nav-item
                     a.nav-link(href="/questions") Questions | Ask or Browse
                     i.text-muted View questions from other people, or ask your own question 
                       | and get an answeer right away.
-                    p 
-                      b Note:
-                      p Questions must be Medical in Nature
+                    p.text-muted Questions must be Medical in Nature
+                
                 .col-md-6
                   li.nav-item
                     a.nav-link(href="/about") About Us
                     i.text-muted Our Events are massive every year/month/day and hour.
                       | and you will miss alot if you don't atleast attend one of our evets.
+              
               .dropdown-divider
               .row
                 .col-md-4
@@ -91,6 +92,7 @@ html
                     a.nav-link(href="/admin/questions/comments") Question Comments
                     i.text-muted View all question comments and perform different operations on them. 
                       | Also, you can edit them and approve those that can appear
+              
               .dropdown-divider
               .row
                 .col-md-12

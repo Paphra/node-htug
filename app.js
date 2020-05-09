@@ -9,7 +9,7 @@ var session = require('express-session');
 var secret = Math.random() + '' + Math.random() + '' + Math.random();
 
 // connection to mongoese
-var dev_db_url = 'mongodb://localhost/ultimatesports';
+var dev_db_url = 'mongodb://localhost:27017/healthtorchug';
 var db_url = process.env.MONGODB_URI || dev_db_url;
 
 mongoose.connect(db_url, {
@@ -25,8 +25,8 @@ db.once('open', ()=>{
 
 /** API Routes */
 var apiSubscribers = require('./routes/api/APISubscribers');
-var apiBooks = require('./routes/api/APIBooks');
-var apiEvents = require('./routes/api/APIEvents');
+var apiQuestions = require('./routes/api/APIQuestions');
+var apiPosts = require('./routes/api/APIPosts');
 var apiUsers = require('./routes/api/APIUsers');
 var apiCategories = require('./routes/api/APICategories');
 var apiPartners = require('./routes/api/APIPartners');
@@ -52,7 +52,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  secret: 'events_' + secret,
+  secret: 'healthtorchug_' + secret,
   resave: true,
   saveUninitialized: true
 }))
@@ -68,10 +68,10 @@ app.use('/admin/subscribers', subscribers);
 /** Register API Routes */
 app.use('/api/subscribers', apiSubscribers);
 app.use('/api/users', apiUsers);
-app.use('/api/events', apiEvents);
+app.use('/api/posts', apiPosts);
 app.use('/api/partners', apiPartners);
 app.use('/api/categories', apiCategories);
-app.use('/api/books', apiBooks);
+app.use('/api/questions', apiQuestions);
 /** END Register API Routes */
 
 // catch 404 and forward to error handler

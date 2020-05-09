@@ -8,9 +8,9 @@ body {
 }
 
 .nav-item.active{
-  background-color: #dddd;
-  border-radius: 10px;
-  padding: 5px 10px;
+  background-color: #cccccc;
+  border-radius: 15px;
+  padding: 10px 15px;
   margin: 2px 0;
   float: center;
 }
@@ -19,4 +19,11 @@ footer{
   position: relative;
   bottom: 0;
 
+}
+
+.nav-item{
+  background-color: #eeee;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 2px 0;
 }
