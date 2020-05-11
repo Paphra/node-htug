@@ -56,7 +56,7 @@ var app = express();
 var admin = express();
 var api = express();
 
-app.use(forceSsl);
+//app.use(forceSsl);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
