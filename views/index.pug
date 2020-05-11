@@ -1,7 +1,37 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  
+  .row
+    .col-md-9
+      .card.shadow
+        h4.card-header
+          i Latest Posts
+        .card-body
+          each post in posts
+            ul
+              li= post.title
+          else
+            i There are no posts to display
+        .card-footer
+          a.btn.btn-primary.btn-sm.float-right(href="/posts") View All
+      
+      hr
+      
+      .card.shadow
+        h4.card-header
+          i Latest Questions
+        .card-body
+          each question in questions
+            ul
+              li= question.content
+          else
+            i There are no questions to display
+        .card-footer.float-right
+          a.btn.btn-primary.btn-sm.float-right(href="/posts") View All
+      
+      hr
 
+    .col-md-3
+      include sidebar
   

@@ -8,7 +8,7 @@ var QuestionSchema = new Schema({
 	lastName: String,
 	email: String,
 	phone: String,
-	desc: String,
+	content: String,
 
 	category: {type: Schema.Types.ObjectId, ref: 'Category'},
 	

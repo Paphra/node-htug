@@ -1,0 +1,20 @@
+extends layout
+
+block adminContent
+	.card
+		.card-header
+			.row
+				h4.col-md-5= title
+				.col-md-7.text-right
+					include filter
+
+		.card-body
+			input#data(type="hidden" value=(data?data:{}))
+			canvas#lineChart
+
+block adminScripts
+	script.
+		var ctxL = document.getElementById("lineChart").getContext('2d');
+		var data_el = document.getElementById('data')
+		var data = JSON.parse(data_el.value);
+		var myLineChart = new Chart(ctxL, data);

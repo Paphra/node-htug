@@ -13,7 +13,7 @@ var PostSchema = new Schema({
 	image: {type: String, required: true},
 	category: {type: Schema.Types.ObjectId, ref: 'Category'},
 	tags: [String],
-	desc: {type: String, required: false},
+	content: String,
 	
 	updatedOn: {type: Date, default: Date.now},
 	createdOn: {type: Date, default: Date.now},

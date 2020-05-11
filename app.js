@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var forceSsl = require('force-ssl-heroku');
+
+var validate = require('./ops/validate');
 
 var secret = Math.random() + '' + Math.random() + '' + Math.random();
 
@@ -24,7 +27,6 @@ db.once('open', ()=>{
 });
 
 /** API Routes */
-var apiSubscribers = require('./routes/api/APISubscribers');
 var apiQuestions = require('./routes/api/APIQuestions');
 var apiPosts = require('./routes/api/APIPosts');
 var apiUsers = require('./routes/api/APIUsers');
@@ -34,14 +36,27 @@ var apiPartners = require('./routes/api/APIPartners');
 
 /** WEB Routes */
 var indexRouter = require('./routes/index');
+var postsRouter = require('./routes/posts');
+var questionsRouter = require('./routes/questions');
+var aboutRouter = require('./routes/about');
+var profileRouter = require('./routes/profile');
 
-var adminRouter = require('./routes/admin');
-var usersRouter = require('./routes/users');
-var subscribers = require('./routes/subscribers');
-
+// admin routes
+var adminRouter = require('./routes/admin/index');
+var usersRouter = require('./routes/admin/users');
+var categoriesRouter = require('./routes/admin/categories');
+var partnersRouter = require('./routes/admin/partners');
+var adminPostsRouter = require('./routes/admin/posts');
+var adminQuestionsRouter = require('./routes/admin/questions');
+var adminAboutRouter = require('./routes/admin/about');
+var adminProfileRouter = require('./routes/admin/profile');
 /** END WEB Routes */
 
 var app = express();
+var admin = express();
+var api = express();
+
+app.use(forceSsl);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -59,19 +74,34 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 /** Register WEB routes */
-app.use('/', indexRouter);
-app.use('/admin', adminRouter);
-app.use('/admin/users', usersRouter);
-app.use('/admin/subscribers', subscribers);
+app.use(validate);
 
+// ordinary user interface
+app.use('/', indexRouter);
+app.use('/posts', postsRouter);
+app.use('/questions', questionsRouter);
+app.use('/about', aboutRouter);
+app.use('/profile', profileRouter);
+
+// admin interface
+app.use('/admin', admin)
+admin.use('/', adminRouter);
+admin.use('/posts', adminPostsRouter);
+admin.use('/questions', adminQuestionsRouter);
+admin.use('/users', usersRouter);
+admin.use('/categories', categoriesRouter);
+admin.use('/partners', partnersRouter);
+admin.use('/about', adminAboutRouter);
+admin.use('/profile', adminProfileRouter);
 /** END Register Web routes */
+
 /** Register API Routes */
-app.use('/api/subscribers', apiSubscribers);
-app.use('/api/users', apiUsers);
-app.use('/api/posts', apiPosts);
-app.use('/api/partners', apiPartners);
-app.use('/api/categories', apiCategories);
-app.use('/api/questions', apiQuestions);
+app.use('/api', api)
+api.use('/users', apiUsers);
+api.use('/posts', apiPosts);
+api.use('/partners', apiPartners);
+api.use('/categories', apiCategories);
+api.use('/questions', apiQuestions);
 /** END Register API Routes */
 
 // catch 404 and forward to error handler

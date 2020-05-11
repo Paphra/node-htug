@@ -1,0 +1,57 @@
+extends ../layout
+
+block content
+	.container-fluid
+		.row
+			.col-md-3
+				.card.shadow
+					h5.card-header Admin Navigation
+					ul.nav.nav-pills.flex-column
+						li.nav-item(class=(navAdminDashboard?'active':''))
+							a.nav-link(href="/admin") 
+								span.fas.fa-cogs
+								span  Dashboard
+						
+						li.nav-item(class=(navProfile?'active':''))
+							a.nav-link(href="/admin/profile/" + (user?user.id:''))  
+								span.fas.fa-user-cog 
+								i  Admin Profile
+						.dropdown-divider
+						li.nav-item(class=(navAdminPosts?'active':''))
+							a.nav-link(href="/admin/posts")  
+								span.fas.fa-book-open 
+								span  Posts
+						li.nav-item(class=(navAdminPostss && navComments?'active':'') style='margin-left:10px')
+							a.nav-link(href="/admin/posts/comments")  
+								span.fas.fa-book 
+								span  Post Comments
+						
+						.dropdown-divider
+						li.nav-item(class=(navAdminQuestions?'active':''))
+							a.nav-link(href="/admin/questions")  
+								span.fas.fa-question 
+								span  Questions
+						
+						li.nav-item(class=(navAdminQuestions&&navComments?'active':'') style='margin-left:10px')
+							a.nav-link(href="/admin/questions/comments")  
+								span.fas.fa-book 
+								span  Question Comments
+						
+						.dropdown-divider
+						li.nav-item(class=(navAdminPartners?'active':''))
+							a.nav-link(href="/admin/partners")  
+								span.fas.fa-user-cog 
+								span  Partners & Sponsors
+						li.nav-item(class=(navAdminUsers?'active':''))
+							a.nav-link(href="/admin/users")  
+								span.fas.fa-users 
+								span  Users
+						li.nav-item(class=(navAdminCategories?'active':''))
+							a.nav-link(href="/admin/categories")  
+								span.fas.fa-folder 
+								span  Categories
+							
+			.col-md-9
+				block adminContent
+
+	block adminScripts

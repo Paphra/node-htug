@@ -2,28 +2,38 @@ body {
   font: 13px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #dedede;
 }
-
-.nav-item.nav-link{
-  color: white;
+#content{
+  padding: 100px 0;
 }
-
 .nav-item.active{
-  background-color: #cccccc;
-  border-radius: 15px;
-  padding: 10px 15px;
-  margin: 2px 0;
+  background-color: blue;
+  border-radius: 10px;
+  padding: 0px 10px;
+  margin: 0px 2px;
   float: center;
 }
 
+.nav-item:hover{
+  background-color: blue;
+  border-radius: 10px;
+  padding: 0px 10px;
+  float: center;
+  color: #444444;
+
+}
+.dropdown-item:hover{
+  background-color: blue;
+  border-radius: 10px;
+  padding: 5px 10px;
+  float: center;
+  color: white;
+}
+
+.nav-link.white{
+  color: white;
+}
 footer{
   position: relative;
   bottom: 0;
 
-}
-
-.nav-item{
-  background-color: #eeee;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 2px 0;
 }
